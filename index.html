@@ -1,0 +1,1151 @@
+<html lang="en"><head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Yuren Pang</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+      * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+      }
+      
+      body {
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          line-height: 1.6;
+          color: #333;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+          background-color: #fafafa;
+          position: relative;
+          overflow-x: hidden;
+      }
+      
+      /* Enhanced floating shapes background */
+      .background-shapes {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+          overflow: hidden;
+          pointer-events: none;
+      }
+      
+      .shape {
+          position: absolute;
+          --mouse-x: 0px;
+          --mouse-y: 0px;
+          opacity: 0.05;
+          filter: blur(1px);
+          transition: opacity 0.5s;
+      }
+      
+      /* Custom animations for different shapes */
+      .shape-float {
+          animation: float 20s infinite ease-in-out;
+      }
+      
+      .shape-sway {
+          animation: sway 25s infinite ease-in-out;
+      }
+      
+      .shape-pulse {
+          animation: pulse 15s infinite ease-in-out;
+      }
+      
+      .shape-orbit {
+          animation: orbit 30s infinite linear;
+      }
+      
+      /* More varied shapes with interesting properties */
+      .shape-1 {
+          top: 15%;
+          left: 7%;
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, rgba(75, 46, 131, 0.5), rgba(95, 66, 151, 0.2));
+          box-shadow: 0 0 20px rgba(75, 46, 131, 0.1);
+      }
+      
+      .shape-2 {
+          top: 25%;
+          right: 12%;
+          width: 90px;
+          height: 90px;
+          background-color: rgba(75, 46, 131, 0.3);
+          transform: rotate(45deg);
+          clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      }
+      
+      .shape-3 {
+          bottom: 20%;
+          left: 18%;
+          width: 65px;
+          height: 65px;
+          background: linear-gradient(45deg, rgba(183, 165, 122, 0.3), rgba(203, 185, 142, 0.1));
+          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+          box-shadow: 0 0 15px rgba(183, 165, 122, 0.1);
+      }
+      
+      .shape-4 {
+          bottom: 35%;
+          right: 8%;
+          width: 50px;
+          height: 50px;
+          border-radius: 0 50% 50% 50%;
+          background-color: rgba(183, 165, 122, 0.4);
+          transform: rotate(45deg);
+      }
+      
+      .shape-5 {
+          top: 60%;
+          left: 30%;
+          width: 40px;
+          height: 40px;
+          background-color: rgba(75, 46, 131, 0.2);
+          clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+      }
+      
+      .shape-6 {
+          top: 40%;
+          left: 65%;
+          width: 55px;
+          height: 55px;
+          border-radius: 50% 50% 50% 0;
+          background: linear-gradient(to bottom right, rgba(183, 165, 122, 0.3), rgba(75, 46, 131, 0.1));
+          transform: rotate(15deg);
+      }
+      
+      .shape-7 {
+          bottom: 12%;
+          right: 25%;
+          width: 30px;
+          height: 30px;
+          clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+          background-color: rgba(75, 46, 131, 0.25);
+          transform: rotate(30deg);
+      }
+      
+      .shape-8 {
+          top: 75%;
+          left: 50%;
+          width: 45px;
+          height: 45px;
+          background-color: rgba(183, 165, 122, 0.2);
+          border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      }
+      
+      /* More interesting animations */
+      @keyframes float {
+          0% { transform: translateY(0) rotate(0deg); }
+          25% { transform: translateY(15px) rotate(3deg); }
+          50% { transform: translateY(25px) rotate(5deg); }
+          75% { transform: translateY(10px) rotate(3deg); }
+          100% { transform: translateY(0) rotate(0deg); }
+      }
+      
+      @keyframes sway {
+          0% { transform: translateX(0) rotate(0deg); }
+          25% { transform: translateX(20px) rotate(-5deg); }
+          50% { transform: translateX(0) rotate(0deg); }
+          75% { transform: translateX(-20px) rotate(5deg); }
+          100% { transform: translateX(0) rotate(0deg); }
+      }
+      
+      @keyframes pulse {
+          0% { transform: scale(1) rotate(0deg); opacity: 0.05; }
+          50% { transform: scale(1.1) rotate(5deg); opacity: 0.08; }
+          100% { transform: scale(1) rotate(0deg); opacity: 0.05; }
+      }
+      
+      @keyframes orbit {
+          0% { transform: rotate(0deg) translateX(50px) rotate(0deg); }
+          100% { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
+      }
+      
+      a {
+          color: #4b2e83;
+          text-decoration: none;
+          transition: all 0.3s;
+          position: relative;
+      }
+      
+      a:hover {
+          text-decoration: none;
+          color: #b7a57a;
+      }
+      
+      /* Link underline animation */
+      a:not(.social-links a):after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 2px;
+          bottom: -2px;
+          left: 0;
+          background-color: #b7a57a;
+          transition: width 0.3s ease;
+      }
+      
+      a:not(.social-links a):hover:after {
+          width: 100%;
+      }
+      
+      .header {
+          display: flex;
+          align-items: center;
+          padding: 30px;
+          position: relative;
+      }
+      
+      .profile-img {
+          width: 200px;
+          height: 200px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-right: 30px;
+          border: 3px solid #4b2e83;
+          transition: transform 0.5s, box-shadow 0.5s;
+          position: relative;
+          z-index: 1;
+      }
+      
+      .profile-img:hover {
+          transform: scale(1.05) rotate(3deg);
+          box-shadow: 0 10px 25px rgba(75, 46, 131, 0.3);
+      }
+      
+      /* Image halo effect */
+      .profile-img:after {
+          content: '';
+          position: absolute;
+          top: -8px;
+          left: -8px;
+          right: -8px;
+          bottom: -8px;
+          border-radius: 50%;
+          background: linear-gradient(45deg, rgba(75, 46, 131, 0.5), rgba(183, 165, 122, 0.5));
+          z-index: -1;
+          opacity: 0;
+          transition: opacity 0.5s;
+      }
+      
+      .profile-img:hover:after {
+          opacity: 1;
+          animation: pulse 2s infinite;
+      }
+      
+      @keyframes pulse {
+          0% { transform: scale(1); opacity: 0.5; }
+          50% { transform: scale(1.05); opacity: 0.8; }
+          100% { transform: scale(1); opacity: 0.5; }
+      }
+      
+      .header-content h1 {
+          font-size: 2.2rem;
+          color: #4b2e83;
+          margin-bottom: 5px;
+          position: relative;
+          display: inline-block;
+      }
+      
+      /* Fun animated underline for name */
+      .header-content h1:after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 5px;
+          bottom: -5px;
+          left: 0;
+          background: linear-gradient(90deg, #4b2e83, #b7a57a);
+          border-radius: 10px;
+          transform-origin: right;
+          transform: scaleX(0);
+          transition: transform 0.5s ease-out;
+      }
+      
+      .header-content h1:hover:after {
+          transform-origin: left;
+          transform: scaleX(1);
+      }
+      
+      .header-content p {
+          font-size: 1.1rem;
+          color: #666;
+          margin-bottom: 15px;
+          transition: transform 0.3s;
+      }
+      
+      .header-content p:hover {
+          transform: translateX(5px);
+      }
+      
+      .social-links {
+          display: flex;
+          gap: 15px;
+      }
+      
+      .social-links a {
+          color: #666;
+          transition: all 0.3s;
+          transform: translateY(0);
+      }
+      
+      .social-links a:hover {
+          color: #4b2e83;
+          transform: translateY(-3px);
+      }
+      
+      /* Social icons hover effect */
+      .social-links a i {
+          transition: transform 0.3s;
+      }
+      
+      .social-links a:hover i {
+          transform: scale(1.2);
+      }
+      
+      .main-content {
+          display: flex;
+          gap: 40px;
+          margin-top: 30px;
+          position: relative;
+      }
+      
+      .content {
+          flex: 2;
+      }
+      
+      .sidebar {
+          flex: 1;
+      }
+      
+      .bio p {
+          margin-bottom: 20px;
+          font-size: 1rem;
+          transition: transform 0.3s;
+          padding: 10px;
+          border-radius: 5px;
+      }
+      
+      .bio p:hover {
+          background-color: rgba(75, 46, 131, 0.03);
+          transform: translateX(3px);
+      }
+      
+      .highlight {
+          background-color: rgba(75, 46, 131, 0.1);
+          padding: 0 3px;
+          transition: all 0.3s;
+          border-radius: 3px;
+          position: relative;
+      }
+      
+      .highlight:hover {
+          background-color: rgba(75, 46, 131, 0.2);
+          color: #4b2e83;
+          padding: 0 5px;
+      }
+      
+      section {
+          margin-bottom: 40px;
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.8s, transform 0.8s;
+      }
+      
+      .section-visible {
+          opacity: 1;
+          transform: translateY(0);
+      }
+      
+      h2 {
+          color: #4b2e83;
+          font-size: 1.6rem;
+          margin-bottom: 20px;
+          padding-bottom: 8px;
+          border-bottom: 1px solid #e0e0e0;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      /* Section heading animation */
+      h2:before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 3px;
+          bottom: -1px;
+          left: -100%;
+          background: linear-gradient(90deg, #4b2e83, #b7a57a);
+          transition: left 0.5s ease;
+      }
+      
+      section:hover h2:before {
+          left: 0;
+      }
+      
+      .sidebar h2 {
+          font-size: 1.3rem;
+      }
+      
+      .research-interests {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          margin-bottom: 30px;
+      }
+      
+      .tag {
+          background-color: rgba(75, 46, 131, 0.1);
+          color: #4b2e83;
+          padding: 4px 12px;
+          border-radius: 20px;
+          font-size: 0.8rem;
+          transition: all 0.3s;
+          cursor: default;
+      }
+      
+      .tag:hover {
+          background-color: #4b2e83;
+          color: white;
+          transform: translateY(-3px) rotate(2deg);
+          box-shadow: 0 5px 15px rgba(75, 46, 131, 0.2);
+      }
+      
+      .news-list {
+          max-height: 400px;
+          overflow-y: auto;
+          padding-right: 10px;
+          font-size: 0.85rem;
+          border-radius: 8px;
+          background-color: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(5px);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+          padding: 15px;
+          transition: box-shadow 0.3s;
+      }
+      
+      .news-list:hover {
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      .news-list li {
+          margin-bottom: 12px;
+          list-style-type: none;
+          border-bottom: 1px dotted #e0e0e0;
+          padding-bottom: 12px;
+          transition: transform 0.3s;
+          position: relative;
+          padding-left: 20px;
+      }
+      
+      .news-list li:before {
+          content: "→";
+          position: absolute;
+          left: 0;
+          color: #4b2e83;
+          opacity: 0;
+          transition: opacity 0.3s, transform 0.3s;
+      }
+      
+      .news-list li:hover {
+          transform: translateX(5px);
+      }
+      
+      .news-list li:hover:before {
+          opacity: 1;
+          transform: translateX(-5px);
+      }
+      
+      .news-list li:last-child {
+          border-bottom: none;
+      }
+      
+      .date {
+          font-weight: 600;
+          color: #4b2e83;
+          transition: color 0.3s;
+      }
+      
+      .news-list li:hover .date {
+          color: #b7a57a;
+      }
+      
+      .publication {
+          background-color: white;
+          border: 1px solid #e0e0e0;
+          border-radius: 5px;
+          padding: 20px;
+          margin-bottom: 20px;
+          transition: transform 0.3s, box-shadow 0.3s;
+          position: relative;
+          overflow: hidden;
+      }
+      
+      .publication:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* Corner fold effect */
+      .publication:before {
+          content: "";
+          position: absolute;
+          top: 0;
+          right: 0;
+          border-style: solid;
+          border-width: 0 20px 20px 0;
+          border-color: transparent #f0f0f0 transparent transparent;
+          transition: all 0.3s;
+      }
+      
+      .publication:hover:before {
+          border-width: 0 30px 30px 0;
+          border-color: transparent #4b2e83 transparent transparent;
+      }
+      
+      .publication h3 {
+          color: #4b2e83;
+          margin-bottom: 10px;
+          font-size: 1.2rem;
+          transition: color 0.3s;
+      }
+      
+      .publication:hover h3 {
+          color: #b7a57a;
+      }
+      
+      .authors {
+          margin-bottom: 8px;
+      }
+      
+      strong {
+          transition: all 0.3s;
+          padding: 0 2px;
+          border-radius: 3px;
+      }
+      
+      .publication:hover strong {
+          background-color: rgba(75, 46, 131, 0.1);
+          color: #4b2e83;
+      }
+      
+      .venue {
+          font-style: italic;
+          color: #666;
+          margin-bottom: 12px;
+          font-size: 0.9rem;
+      }
+      
+      .links {
+          display: flex;
+          gap: 15px;
+          font-size: 0.9rem;
+      }
+      
+      .links a {
+          transition: all 0.3s;
+          padding: 3px 8px;
+          border-radius: 4px;
+      }
+      
+      .links a:hover {
+          background-color: rgba(75, 46, 131, 0.1);
+      }
+      
+      .links a i {
+          transition: transform 0.3s;
+      }
+      
+      .links a:hover i {
+          transform: translateY(-2px);
+      }
+      
+      .show-more {
+          display: block;
+          width: fit-content;
+          margin: 20px auto;
+          padding: 8px 20px;
+          background-color: white;
+          border: 1px solid #4b2e83;
+          color: #4b2e83;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: all 0.3s;
+          position: relative;
+          overflow: hidden;
+          z-index: 1;
+      }
+      
+      .show-more:before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background-color: #4b2e83;
+          transition: all 0.3s;
+          z-index: -1;
+      }
+      
+      .show-more:hover {
+          color: white;
+      }
+      
+      .show-more:hover:before {
+          left: 0;
+      }
+      
+      .hidden {
+          display: none;
+      }
+      
+      /* Fun cursor effect */
+      .cursor-follower {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background-color: rgba(75, 46, 131, 0.3);
+          position: fixed;
+          pointer-events: none;
+          z-index: 9999;
+          transition: transform 0.1s, background-color 0.3s;
+          transform: translate(-50%, -50%);
+          display: none;
+      }
+      
+      /* Hover highlights for fun section */
+      #fun p {
+          transition: all 0.3s;
+          padding: 10px;
+          border-radius: 5px;
+          position: relative;
+      }
+      
+      #fun p:hover {
+          background-color: rgba(75, 46, 131, 0.05);
+      }
+      
+      /* Fun beer emoji animation */
+      #fun p a:last-of-type + .beer-emoji {
+          display: inline-block;
+          transition: transform 0.3s;
+      }
+      
+      #fun p:hover .beer-emoji {
+          animation: shake 0.5s infinite;
+          transform: rotate(-10deg);
+      }
+      
+      @keyframes shake {
+          0% { transform: rotate(-10deg); }
+          50% { transform: rotate(10deg); }
+          100% { transform: rotate(-10deg); }
+      }
+      
+      /* Scroll to top button */
+      .scroll-top {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 40px;
+          height: 40px;
+          background-color: #4b2e83;
+          color: white;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
+          opacity: 0;
+          transition: all 0.3s;
+          transform: translateY(20px);
+          z-index: 99;
+      }
+      
+      .scroll-top.visible {
+          opacity: 0.7;
+          transform: translateY(0);
+      }
+      
+      .scroll-top:hover {
+          opacity: 1;
+          transform: translateY(-5px);
+      }
+      
+      /* Visual stability + accessibility */
+      html {
+          scroll-behavior: smooth;
+          scroll-padding-top: 28px;
+      }
+
+      body {
+          min-width: 0;
+      }
+
+      img {
+          max-width: 100%;
+          height: auto;
+      }
+
+      a, button {
+          -webkit-tap-highlight-color: transparent;
+      }
+
+      a:focus-visible, button:focus-visible {
+          outline: 3px solid rgba(75, 46, 131, 0.35);
+          outline-offset: 3px;
+      }
+
+      .links {
+          flex-wrap: wrap;
+          row-gap: 8px;
+      }
+
+      .scroll-top {
+          border: 0;
+          padding: 0;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+          *, *::before, *::after {
+              animation-duration: 0.01ms !important;
+              animation-iteration-count: 1 !important;
+              transition-duration: 0.01ms !important;
+              scroll-behavior: auto !important;
+          }
+          .cursor-follower { display: none !important; }
+      }
+
+      /* Responsive styles */
+      @media (max-width: 900px) {
+          .main-content {
+              gap: 28px;
+          }
+      }
+
+      @media (max-width: 768px) {
+          body {
+              padding: 0 16px;
+          }
+
+          .header {
+              flex-direction: column;
+              text-align: center;
+              padding-top: 28px;
+          }
+
+          .profile-img {
+              margin-right: 0;
+              margin-bottom: 16px;
+          }
+
+          .social-links {
+              justify-content: center;
+              flex-wrap: wrap;
+          }
+
+          .main-content {
+              flex-direction: column;
+              gap: 24px;
+          }
+
+          .sidebar {
+              order: -1;
+          }
+
+          .background-shapes {
+              display: none;
+          }
+
+          .publication {
+              padding: 16px;
+          }
+
+          .links {
+              gap: 6px 8px;
+          }
+
+          .links a {
+              padding: 7px 8px;
+          }
+
+          .news-list {
+              max-height: 320px;
+          }
+      }
+
+      @media (max-width: 480px) {
+          h1 {
+              font-size: 2rem;
+          }
+
+          section h2 {
+              font-size: 1.45rem;
+          }
+
+          .publication h3 {
+              font-size: 1.05rem;
+          }
+
+          .show-more {
+              width: 100%;
+              max-width: 280px;
+              min-height: 44px;
+          }
+
+          .scroll-top {
+              right: 14px;
+              bottom: 14px;
+          }
+      }
+  </style>
+</head>
+ 
+  <!-- Background floating shapes -->
+  <div class="background-shapes">
+      <div class="shape shape-1 shape-float"></div>
+      <div class="shape shape-2 shape-sway"></div>
+      <div class="shape shape-3 shape-pulse"></div>
+      <div class="shape shape-4 shape-orbit"></div>
+      <div class="shape shape-5 shape-float"></div>
+      <div class="shape shape-6 shape-sway"></div>
+      <div class="shape shape-7 shape-pulse"></div>
+      <div class="shape shape-8 shape-orbit"></div>
+  </div>
+  
+  <!-- Custom cursor follower -->
+  <div class="cursor-follower"></div>
+  
+  <header class="header">
+      <img src="assets/profile.png" alt="Rock Yuren Pang" class="profile-img">
+      <div class="header-content">
+          <h1>Rock Yuren Pang</h1>
+          <p>Ph.D. Student in Computer Science • University of Washington</p>
+          <div class="social-links">
+              <a href="mailto:ypang2@uw.edu" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+              <a href="https://twitter.com/rockpang6" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+              <a href="https://www.linkedin.com/in/yuren-rock-pang/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="https://github.com/rrrrrrockpang" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="https://www.semanticscholar.org/author/Yuren-Pang/2161784423" target="_blank" aria-label="Semantic Scholar"><i class="fa-solid fa-graduation-cap"></i></a>
+              <a href="https://scholar.google.com/citations?user=DeBMYCYAAAAJ&amp;hl=en" target="_blank" aria-label="Google Scholar"><i class="fa-brands fa-google"></i></a>
+          </div>
+      </div>
+  </header>
+
+  <div class="main-content">
+      <div class="content">
+          <section id="bio" class="bio section-visible">
+              <h2>👋 About Me</h2>
+              <p>
+                  Hi! I'm a fifth <span style="text-decoration: line-through; color: #777;">fourth</span> <span style="text-decoration: line-through; color: #777;">third</span>-year 😱 Ph.D. student at Paul G. Allen School of Computer Science &amp; Engineering at the University of Washington, with <a href="https://homes.cs.washington.edu/~reinecke/">Katharina Reinecke</a>. I am broadly working in <span class="highlight">responsible AI and human-AI interaction</span>. 
+                  I aim to align the goals of responsible computing with the realities of computing research practices, especially in the early stages of designing technologies. My current focus is to build new tools and interaction design to support researchers and practitioners to <span class="highlight">anticipate</span> potential unintended consequences. I am also interested in accessibility, data visualization, cross-culture usability of technology and HCI.
+              </p>
+              
+              <p>
+                  My research is supported by <a href="https://research.ibm.com/university/awards/fellowships-awardees.html" target="_blank">IBM PhD Fellowship</a>. I have been a research intern at Microsoft Research with <a href="https://www.microsoft.com/en-us/research/people/dabragg" target="_blank">Danielle Bragg</a> in 2024 and <a href="https://koenecke.infosci.cornell.edu/" target="_blank">Allison Koenecke</a> in 2022. I spent four wonderful years at Macalester College, where I worked with <a href="https://www.macalester.edu/mscs/facultystaff/shiladsen/" target="_blank">Shilad Sen</a>.
+              </p>
+
+              <p>
+                <strong>Fun</strong>: I cook, ski, or hike. I used to do mock trial, triple jump and run <a href="https://athletics.macalester.edu/sports/mens-track-and-field/roster/2019"><strong>track and field</strong></a> in college.
+              </p>
+
+              <p>If you are interested in collaborating or PhD application, please feel free to reach out.</p>
+          </section>
+
+          <section id="publications" class="section-visible">
+              <h2>📜 Publications</h2>
+
+              <div class="publication">
+                <h3>Interactive Reasoning: Visualizing and Controlling Chain-of-Thought Reasoning in Large Language Models</h3>
+                <p class="authors"><strong>Rock Yuren Pang</strong>, K. J. Kevin Feng, Shangbin Feng, Chu Li, Weijia Shi, Yulia Tsvetkov, Jeffrey Heer, Katharina Reinecke</p>
+                <p class="venue">ACM Conference on Intelligent User Interfaces (IUI'26). Paphos, Cyprus, March 23-26, 2026.</p>
+                <div class="links">
+                    <a href="https://homes.cs.washington.edu/~ypang2/papers/uist25-interactive-reasoning.pdf" target="_blank"><i class="fa-solid fa-scroll"></i> Preprint</a>
+                    <a href="https://arxiv.org/pdf/2506.23678" target="_blank"><i class="fa-solid fa-scroll"></i> arXiv</a>
+                </div>
+            </div>
+              
+              <div class="publication">
+                  <h3>Understanding the LLM-ification of CHI: Unpacking the Impact of LLMs at CHI through a Systematic Literature Review</h3>
+                  <p class="authors"><strong>Rock Yuren Pang</strong>, Hope Schroeder, Kynnedy Simone Smith, Solon Barocas, Ziang Xiao, Emily Tseng, Danielle Bragg</p>
+                  <p class="venue">ACM Conference on Human Factors in Computing Systems (CHI'25). Yokohama, Japan, April 26–May 1, 2025.</p>
+                  <div class="links">
+                      <a href="https://dl.acm.org/doi/pdf/10.1145/3706598.3713726" target="_blank"><i class="fa-solid fa-scroll"></i> ACM</a>
+                      <a href="https://arxiv.org/abs/2501.12557" target="_blank"><i class="fa-solid fa-scroll"></i> Preprint</a>
+                      <a href="https://github.com/rrrrrrockpang/llm-chi" target="_blank"><i class="fa-solid fa-code"></i> Github</a>
+                  </div>
+              </div>
+              
+              <div class="publication">
+                  <h3>Accessibility for Whom? Perceptions of Sidewalk Barriers Across Disability Groups and Implications for Designing Personalized Maps</h3>
+                  <p class="authors">Chu Li, <strong>Rock Yuren Pang</strong>, Delphine Labbé, Yochai Eisenberg, Maryam Hosseini, Jon E. Froehlich</p>
+                  <p class="venue">ACM Conference on Human Factors in Computing Systems (CHI'25). Yokohama, Japan, April 26–May 1, 2025.</p>
+                  <div class="links">
+                        <a href="https://dl.acm.org/doi/pdf/10.1145/3706598.3713421" target="_blank"><i class="fa-solid fa-scroll"></i> ACM</a>
+                      <a href="https://homes.cs.washington.edu/~ypang2/papers/chi-2025-accessibility.pdf" target="_blank"><i class="fa-solid fa-scroll"></i> Preprint</a>
+                  </div>
+              </div>
+              
+              <div class="publication">
+                  <h3>BLIP: Facilitating the Exploration of Undesirable Consequences of Digital Technologies Using LLM</h3>
+                  <p class="authors"><strong>Rock Yuren Pang</strong>, Sebastin Santy, René Just, Katharina Reinecke</p>
+                  <p class="venue">ACM Conference on Human Factors in Computing Systems (CHI'24). Hawaiʻi, USA, May 2024.</p>
+                  <div class="links">
+                      <a href="https://dl.acm.org/doi/10.1145/3613904.3642054" target="_blank"><i class="fa-solid fa-scroll"></i> Paper</a>
+                      <a href="https://www.youtube.com/watch?v=rBtdpaWlTWU" target="_blank"><i class="fa-solid fa-play"></i> Video</a>
+                      <a href="https://blip.labinthewild.org/" target="_blank"><i class="fa-solid fa-code"></i> Website</a>
+                  </div>
+              </div>
+              
+              <div class="publication">
+                  <h3>Auditing Cross-Cultural Consistency of Human-Annotated Labels for Recommendation Systems</h3>
+                  <p class="authors"><strong>Rock Yuren Pang*</strong>, Jack Cenatempo*, Franklyn Graham, Bridgette Kuehn, Maddy Whisenant, Portia Botchway, Katie Stone Perez and Allison Koenecke</p>
+                  <p class="venue">ACM Conference on Fairness, Accountability, and Transparency (FAccT '23). Chicago, IL, June 2023.</p>
+                  <div class="links">
+                      <a href="https://dl.acm.org/doi/abs/10.1145/3593013.3594098" target="_blank"><i class="fa-solid fa-scroll"></i> Paper</a>
+                      <a href="https://www.youtube.com/watch?v=iYrCJmSaULw&amp;ab_channel=RockPang" target="_blank"><i class="fa-solid fa-play"></i> Video</a>
+                      <a href="https://infosci.cornell.edu/information/news/newsitem1451/gamers-help-highlight-disparities-algorithm-data" target="_blank"><i class="fa-solid fa-paper-plane"></i> Media</a>
+                  </div>
+              </div>
+              
+              <button id="show-more-pubs" class="show-more">Show More Publications</button>
+              
+              <div id="more-pubs" class="hidden">
+                  <div class="publication">
+                      <h3>"That's important, but...": How Computer Science Researchers Anticipate Unintended Consequences of Their Research Innovations</h3>
+                      <p class="authors"><strong>Rock Yuren Pang*</strong>, Kimberly Do*, Jiachen Jiang, Katharina Reinecke</p>
+                      <p class="venue">ACM Conference on Human Factors in Computing Systems (CHI'23). Hamburg, Germany, April 2023.</p>
+                      <div class="links">
+                          <a href="https://arxiv.org/pdf/2303.15536.pdf" target="_blank"><i class="fa-solid fa-scroll"></i> Paper</a>
+                          <a href="https://www.youtube.com/watch?v=jEgTy6Rn03E&amp;ab_channel=ACMSIGCHI" target="_blank"><i class="fa-solid fa-play"></i> Preview</a>
+                          <a href="https://news.cs.washington.edu/2023/09/12/we-come-in-peace-allen-school-researchers-offer-a-vision-for-addressing-potential-unintended-consequences-of-technology/" target="_blank"><i class="fa-solid fa-paper-plane"></i> Media</a>
+                      </div>
+                  </div>
+                  
+                  <div class="publication">
+                      <h3>How Do Data Scientists Communicate Intermediate Results?</h3>
+                      <p class="authors"><strong>Rock Yuren Pang</strong>, Ruotong Wang, Joely Nelson, Leilani Battle</p>
+                      <p class="venue">Symposium on Visualization in Data Science (VDS@VIS'22). Oklahoma City, Oklahoma, October 2022.</p>
+                      <div class="links">
+                          <a href="https://arxiv.org/pdf/2210.03305" target="_blank"><i class="fa-solid fa-scroll"></i> Paper</a>
+                          <a href="https://www.computer.org/csdl/proceedings-article/vds/2022/572100a046/1JezLW0PNo4" target="_blank"><i class="fa-solid fa-scroll"></i> IEEE</a>
+                      </div>
+                  </div>
+                  
+                  <div class="publication">
+                      <h3>Apéritif: Scaffolding Preregistrations to Automatically Generate Analysis Code and Methods Descriptions</h3>
+                      <p class="authors"><strong>Rock Yuren Pang</strong>, Katharina Reinecke, René Just</p>
+                      <p class="venue">ACM Conference on Human Factors in Computing Systems (CHI'22). New Orleans, LA, April 2022.</p>
+                      <div class="links">
+                          <a href="https://dl.acm.org/doi/abs/10.1145/3491102.3517707" target="_blank"><i class="fa-solid fa-scroll"></i> Paper</a>
+                      </div>
+                  </div>
+              </div>
+          </section>
+
+          <section id="short-papers" class="section-visible">
+              <h2>🦥 Short Papers</h2>
+
+	      <div class="publication">
+                  <h3>On the Regulatory Potential of User Interfaces for AI Agent Governance</h3>
+                  <p class="authors">Kevin Feng*, Tae Soo Kim*, <strong>Rock Yuren Pang*</strong>, Faria Huq, Tal August, Amy X. Zhang</p>
+                  <p class="venue">NeurIPS 2025 Workshop on Regulatable ML. San Diego, CA, Dec 07, 2025.</p>
+                  <div class="links">
+			<a href="https://www.arxiv.org/pdf/2512.00742" target="_blank"><i class="fa-solid fa-scroll"></i> Preprint</a>
+                  </div>
+              </div>
+              
+              <div class="publication">
+                  <h3>Sociotechnical AI Governance: Opportunities and Challenges for HCI</h3>
+                  <p class="authors">Kevin Feng*, <strong>Rock Yuren Pang*</strong>, Tzu-Sheng Kuo, Amy A. Winecoff, Emily Tseng, David Gray Widder, Harini Suresh, Katharina Reinecke, Amy X. Zhang</p>
+                  <p class="venue">ACM Conference on Human Factors in Computing Systems Extended Abstract (CHI EA'25). Yokohama, Japan, April 26–May 1, 2025.</p>
+                  <div class="links">
+                      <a href="https://homes.cs.washington.edu/~ypang2/papers/chi-staig-workshop.pdf" target="_blank"><i class="fa-solid fa-scroll"></i> Preprint</a>
+                      <a href="https://chi-staig.github.io/" target="_blank"><i class="fa-solid fa-code"></i> Website</a>
+                  </div>
+              </div>
+              
+              <div class="publication">
+                  <h3>AltGeoViz: Facilitating Accessible Geovisualization</h3>
+                  <p class="authors">Chu Li, <strong>Rock Yuren Pang</strong>, Ather Sharif, Arnavi Chheda-Kothary, Jeffrey Heer, Jon E. Froehlich</p>
+                  <p class="venue">IEEE Visualization and Visual Analytics (VIS'24) Short Paper Track. St. Pete Beach, Florida, USA, October 2024.</p>
+                  <div class="links">
+                      <a href="https://arxiv.org/abs/2406.13853" target="_blank"><i class="fa-solid fa-scroll"></i> Preprint</a>
+                      <a href="https://github.com/makeabilitylab/altgeoviz" target="_blank"><i class="fa-solid fa-code"></i> Code</a>
+                  </div>
+              </div>
+              
+              <div class="publication">
+                  <h3>The Case for Anticipating Undesirable Consequences of Computing Innovations Early, Often, and Across Computer Science</h3>
+                  <p class="authors"><strong>Rock Yuren Pang</strong>, Dan Grossman, Tadayoshi Kohno, Katharina Reinecke</p>
+                  <p class="venue">ArXiv</p>
+                  <div class="links">
+                      <a href="https://arxiv.org/pdf/2309.04456.pdf" target="_blank"><i class="fa-solid fa-scroll"></i> Paper</a>
+                      <a href="https://news.cs.washington.edu/2023/09/12/we-come-in-peace-allen-school-researchers-offer-a-vision-for-addressing-potential-unintended-consequences-of-technology/" target="_blank"><i class="fa-solid fa-paper-plane"></i> Media</a>
+                  </div>
+              </div>
+              
+              <div class="publication">
+                  <h3>Anticipating Unintended Consequences of Technology Using Insights from Creativity Support Tools</h3>
+                  <p class="authors"><strong>Rock Yuren Pang</strong>, Katharina Reinecke</p>
+                  <p class="venue">Design &amp; Policy Workshop @ CHI '23. Hamburg, Germany, April 2023.</p>
+                  <div class="links">
+                      <a href="https://arxiv.org/pdf/2304.05687.pdf" target="_blank"><i class="fa-solid fa-scroll"></i> Paper</a>
+                      <a href="https://designpolicy.one/" target="_blank"><i class="fa-solid fa-desktop"></i> Website</a>
+                  </div>
+              </div>
+          </section>
+
+          <section id="honors" class="section-visible">
+              <h2>🏆 Honors</h2>
+              <ul class="honors-list" style="margin-left: 20px;">
+                <li style="margin-bottom: 15px; transition: all 0.3s;">
+                    <span class="honor-item">2024-2025 IBM PhD Fellowship</span> <a href="https://research.ibm.com/university/awards/fellowships-awardees.html">[Link]</a>
+                </li>
+                  <li style="margin-bottom: 15px; transition: all 0.3s;">
+                      <span class="honor-item">2024 UW Digital Accessibility Award</span> for making the <a href="https://create.uw.edu/a11y-in-action/accessible-courses/">Accessibility Guide for Data Science and STEM Classes</a> <a href="https://www.washington.edu/accesstech/get-involved/events/awards/2024-digital-accessibility-awards/">[Link]</a>
+                  </li>
+                  <li style="margin-bottom: 15px; transition: all 0.3s;">
+                      <span class="honor-item">UW CSE Educators' Endowed Fellowship</span> (2020) <a href="https://www.cs.washington.edu/students/grad/awardrecipients/educators">[link]</a>
+                  </li>
+                  <li style="margin-bottom: 15px; transition: all 0.3s;">
+                      <span class="honor-item">Macalester Ezra J. Camp Endowed Prize in Mathematics</span> (2020) <a href="https://catalog.macalester.edu/content.php?catoid=23&amp;navoid=2070">[link]</a>
+                  </li>
+                  <!-- <li style="transition: all 0.3s;">
+                      <a href="/~ypang2/more" class="more-link">More Awards <i class="fa-solid fa-arrow-right"></i></a>
+                  </li> -->
+              </ul>
+          </section>
+
+          <!-- <section id="fun" class="section-visible">
+              <h2>🦘 Fun</h2>
+              <p>
+                  I used to triple jump and run <a href="https://athletics.macalester.edu/sports/mens-track-and-field/roster/2019">track and field</a> and do mock trial in college.
+                  I sometimes cook, ski, or hike. I'm from Qingdao, China, a city that brews the best beer in the world <span class="beer-emoji">🍻</span> :)
+              </p>
+          </section> -->
+      </div>
+
+      <div class="sidebar">
+          
+
+          
+          <section class="section-visible">
+              <h2>🔶 News &amp; Travel</h2>
+              <ul class="news-list">
+                <li><span class="date">Jan 2026:</span> Two Paper accepted at CHI'26!!</li>
+		<li><span class="date">Dec 2025:</span> Interactive Reasoning accepted at IUI'26!!</li>
+		<li><span class="date">May 2025:</span> Talk at the HCI seminar at the Design Lab, UC San Diego</li>
+                <li><span class="date">Apr-May 2025:</span> Attend CHI'25 in Yokohama, Japan</li>
+                  <li><span class="date">Feb 2025:</span> One <a href="https://dl.acm.org/doi/pdf/10.1145/3706599.3719747">CHI LBW</a> paper accepted</li>
+                  <li><span class="date">Jan 2025:</span> Two papers accepted to <a href="https://chi2025.acm.org/">CHI 2025</a></li>
+                  <li><span class="date">Jan 2025:</span> Received the 2024-2025 IBM PhD Fellowship</li>
+                  <li><span class="date">Jan 2025:</span> Program Committee member at CHI Late Breaking Work 2025</li>
+                  <li><span class="date">Dec 2024:</span> Program Committee member at FAccT'25</li>
+                  <li><span class="date">Nov 2024:</span> First workshop on <a href="https://chi-staig.github.io/">Sociotechnical AI Governance</a> is accepted to CHI'25!</li>
+                  <li><span class="date">Nov 2024:</span> Annual Research Showcase People's Choice Award at UW CSE</li>
+                  <li><span class="date">Oct 2024:</span> Program Committee member at IUI'25</li>
+                  <li><span class="date">Jun 2024:</span> Started my internship at Microsoft Research NYC with <a href="https://www.microsoft.com/en-us/research/people/dabragg">Danielle Bragg</a></li>
+                  <li><span class="date">Jun 2024:</span> 1 short paper on accessible map visualization was accepted to VIS'2024</li>
+                  <li><span class="date">Apr 2024:</span> Our guide on accessible STEM classrooms won the <a href="https://www.washington.edu/accesstech/get-involved/events/awards/2024-digital-accessibility-awards/">2024 UW Digital Accessibility Award</a></li>
+                  <li><span class="date">Sept 2023:</span> Thanks Allen School News for covering <a href="https://news.cs.washington.edu/2023/09/12/we-come-in-peace-allen-school-researchers-offer-a-vision-for-addressing-potential-unintended-consequences-of-technology/">our work!</a></li>
+                  <li><span class="date">Apr 2023:</span> 1 paper accepted to FAccT 2023!! See you in Chicago!</li>
+                  <li><span class="date">Mar 2023:</span> Start my part-time internship at <a href="http://clearbrief.ai/">Clearbrief.ai</a></li>
+              </ul>
+          </section>
+      </div>
+  </div>
+  
+  <!-- Scroll to top button -->
+  <button class="scroll-top" type="button" aria-label="Scroll to top">
+      <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <script>
+      (() => {
+          const morePubs = document.getElementById('more-pubs');
+          const showMoreButton = document.getElementById('show-more-pubs');
+          const scrollButton = document.querySelector('.scroll-top');
+          const cursor = document.querySelector('.cursor-follower');
+          const shapes = document.querySelectorAll('.shape');
+          const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+          if (showMoreButton && morePubs) {
+              showMoreButton.addEventListener('click', () => {
+                  const expanded = !morePubs.classList.contains('hidden');
+                  morePubs.classList.toggle('hidden', expanded);
+                  showMoreButton.textContent = expanded ? 'Show More Publications' : 'Show Fewer Publications';
+                  showMoreButton.setAttribute('aria-expanded', String(!expanded));
+              });
+              showMoreButton.setAttribute('aria-expanded', 'false');
+          }
+
+          const sections = document.querySelectorAll('section');
+          const updateScrollState = () => {
+              sections.forEach(section => {
+                  if (section.getBoundingClientRect().top < window.innerHeight * 0.85) {
+                      section.classList.add('section-visible');
+                  }
+              });
+              if (scrollButton) scrollButton.classList.toggle('visible', window.scrollY > 300);
+          };
+
+          updateScrollState();
+          window.addEventListener('scroll', updateScrollState, { passive: true });
+          window.addEventListener('resize', updateScrollState, { passive: true });
+
+          if (scrollButton) {
+              scrollButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
+          }
+
+          // Desktop-only cursor: do not let it alter layout or intercept interaction.
+          if (cursor && window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
+              cursor.style.display = 'block';
+              window.addEventListener('pointermove', (event) => {
+                  cursor.style.left = `${event.clientX}px`;
+                  cursor.style.top = `${event.clientY}px`;
+              }, { passive: true });
+
+              document.querySelectorAll('a, button, .tag, .publication').forEach(item => {
+                  item.addEventListener('pointerenter', () => {
+                      cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                      cursor.style.backgroundColor = 'rgba(183, 165, 122, 0.3)';
+                  });
+                  item.addEventListener('pointerleave', () => {
+                      cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                      cursor.style.backgroundColor = 'rgba(75, 46, 131, 0.3)';
+                  });
+              });
+          }
+
+          if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
+              shapes.forEach((shape, index) => {
+                  shape.style.animationDelay = `${(index * 1.37) % 8}s`;
+                  shape.style.animationDuration = `${18 + (index % 5) * 3}s`;
+              });
+
+              window.addEventListener('pointermove', (event) => {
+                  const x = event.clientX / Math.max(window.innerWidth, 1) - 0.5;
+                  const y = event.clientY / Math.max(window.innerHeight, 1) - 0.5;
+                  shapes.forEach((shape, index) => {
+                      const mx = x * (index % 4 + 1) * 5;
+                      const my = y * (index % 3 + 1) * 4;
+                      shape.style.setProperty('--mouse-x', `${mx}px`);
+                      shape.style.setProperty('--mouse-y', `${my}px`);
+                  });
+              }, { passive: true });
+          }
+      })();
+  </script>
+
+
+
+</body></html>
